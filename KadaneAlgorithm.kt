@@ -10,7 +10,6 @@ private fun getMaxSumSubarray(arr: Array<Int>): Int {
     var maxSum = arr[0]
     var calculatedSum = arr[0]
 
-
     for(i in 1 until arr.size) {
 
         if(arr[i] > (calculatedSum + arr[i])){
