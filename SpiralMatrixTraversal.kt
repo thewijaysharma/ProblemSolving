@@ -16,16 +16,14 @@ fun main() {
     var right = 4 //last column
     var bottom = 5 //bottom row
 
-    var printedElements = 0
     var dir = 0
 
-    while (printedElements < 30) {
+    while (top <= bottom && left <= right) {
 
         when (dir) {
             0 -> {
                 for (i in left..right) {
                     print("${matrix[top][i]} ")
-                    printedElements++
                 }
                 top++
                 dir = 1
@@ -33,7 +31,6 @@ fun main() {
             1 -> {
                 for (i in top..bottom) {
                     print("${matrix[i][right]} ")
-                    printedElements++
                 }
                 right--
                 dir = 2
@@ -41,7 +38,6 @@ fun main() {
             2 -> {
                 for (i in right downTo left) {
                     print("${matrix[bottom][i]} ")
-                    printedElements++
                 }
                 bottom--
                 dir = 3
@@ -49,7 +45,6 @@ fun main() {
             3 -> {
                 for (i in bottom downTo top) {
                     print("${matrix[i][left]} ")
-                    printedElements++
                 }
                 left++
                 dir = 0
