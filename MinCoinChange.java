@@ -37,11 +37,7 @@ public class MinCoinChange {
             return dp[index][amount];
         }
 
-        if(amount < coins[index]){
-            return getCoins(coins, index-1, amount, dp);
-        }
-
-        int taken = 1 + getCoins(coins, index, amount-coins[index], dp);
+        int taken = amount >= coins[index] ? 1 + getCoins(coins, index, amount-coins[index], dp) : Integer.MAX_VALUE;
         int notTaken = getCoins(coins, index-1, amount, dp);
 
         dp[index][amount] = Integer.min(taken, notTaken);
