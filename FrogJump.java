@@ -7,32 +7,21 @@ public class FrogJump {
 
     public static int frogJump(int n, int heights[]) {
 
-        int[] dp = new int[n+1];
+        int[] dp = new int[n];
         Arrays.fill(dp, -1);
 
-        int e = findMinEnergy(heights.length-1, heights, dp);
-        System.out.println("Energy is :"+e);
+        dp[0] = 0;
 
-        return e;
-    }
-
-    static int findMinEnergy(int index, int[] heights, int[] dp) {
-        if (index == 0) {
-            return 0;
+        for (int i = 1; i < n; i++) {
+            int first = dp[i-1] + Math.abs(heights[i] - heights[i - 1]);
+            int second = Integer.MAX_VALUE;
+            if(i>1){
+                second = dp[i-2] + Math.abs(heights[i] - heights[i - 2]);
+            }
+            dp[i] = Math.min(first, second);
         }
 
-        if(dp[index] != -1) return dp[index];
-
-        int right = Integer.MAX_VALUE;
-
-        if (index - 2 >= 0) {
-            right = Math.abs(heights[index] - heights[index - 2]) + findMinEnergy(index-2,  heights, dp);
-        }
-
-        int left = Math.abs(heights[index] - heights[index-1]) + findMinEnergy(index -1, heights, dp);
-
-        dp[index] = Integer.min(right, left);
-        return dp[index];
+        return dp[n-1];
     }
 
     public static void main(String[] args) {
