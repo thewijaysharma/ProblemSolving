@@ -1,5 +1,7 @@
 package ProblemSolving
 
+
+data class Node(val data : Int, var next : Node? = null)
 fun main() {
 
     val n1 = Node(1)
